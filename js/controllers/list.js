@@ -1,24 +1,32 @@
-(function(){
-  
-    angular
-    .module("quizApp",[])
-    .controller("listCtrl",ListController);
-     
-    function ListController()
-    {
-        var vm=this;
-       vm.data=turtlesData;
-       vm.activeturtle={};
-       vm.showturtleInfo=showturtleInfo;
+(function() {
 
-       function showturtleInfo(index)
-       {
-        vm.activeturtle=index;
-       }
+    angular
+        .module("quizApp", [])
+        .controller("listCtrl", ListController);
+
+        ListController.$inject=['quizMetrics'];
+
+    function ListController(quizMetrics) {
+        var vm = this;
+        vm.quizMetrics=quizMetrics;
+        vm.data = turtlesData;
+        vm.activeturtle = {};
+        vm.showturtleInfo = showturtleInfo;
+        vm.activateQuiz=activateQuiz;
+        vm.search = "";
+        
+        
+        function showturtleInfo(index) {
+            vm.activeturtle = index;
+        }
+
+        function  activateQuiz()
+        { 
+         quizMetrics.changeState(true)
+        }
     }
 
-    var turtlesData = [
-        {
+    var turtlesData = [{
             type: "Green Turtle",
             image_url: "http://www.tinybubblesscuba.com/wp-content/uploads/2012/08/Honu1.jpg",
             locations: "Tropical and subtropical oceans worldwide",
