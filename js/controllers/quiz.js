@@ -3,12 +3,14 @@
     angular
         .module("quizApp")
         .controller("quizCtrl", QuizController);
-        ListController.$inject=['quizMetrics'];
+        QuizController.$inject=['quizMetrics','Dataservice'];
 
-        function QuizController(quizMetrics ){
+        function QuizController(quizMetrics,Dataservice){
 
             var vm = this;
     
             vm.quizMetrics=quizMetrics;
         }
-})()
+
+        
+})();
